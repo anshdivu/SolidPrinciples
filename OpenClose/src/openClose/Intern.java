@@ -1,11 +1,10 @@
 package openClose;
 
-public class Intern extends AbstractEmployee implements Employee {
+public class Intern extends AbstractEmployee {
 
 	private static final int HOURLY_PAY = 500;
 	
-	public Intern(int id, float hours) {
-		super(id, hours);
+	Intern() {
 	}
 
 	@Override

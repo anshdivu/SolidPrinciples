@@ -1,34 +1,32 @@
 package openClose;
 
-import java.lang.reflect.Constructor;
-
 public class EmployeeDbMapper {
-	public static Employee create(int id, float hours, int type) {
-		try {
-			Constructor<? extends Employee> constructor = EmployeeType.SALARIED.getConstructor();
-			return constructor.newInstance(id, hours);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return null;
+	public static Employee create(int id, float hours, String type) {
+	    EmployeeType employeeType = EmployeeType.valueOf(type);
+	    return employeeType.getEmployee(id, hours);
 	}
 	
 	private enum EmployeeType {
-		SALARIED(0, SalariedEmployee.class),
-		INTERN(1, Intern.class), 
-		CONTRACTOR(2, Contractor.class);
+		SALARIED(SalariedEmployee.class),
+		INTERN(Intern.class), 
+		CONTRACTOR(Contractor.class);
 		
-		private int type;
 		private Class<? extends Employee> clazz;
 
-		EmployeeType(int type, Class<? extends Employee> clazz) {
-			this.type = type;
+		EmployeeType(Class<? extends Employee> clazz) {
 			this.clazz = clazz;
 		}
 
-		public Constructor<? extends Employee> getConstructor() throws NoSuchMethodException, SecurityException {
-			return clazz.getConstructor(int.class, float.class);
+		public Employee getEmployee(int id, float hours) {
+		    try {
+			AbstractEmployee employee = (AbstractEmployee) clazz.newInstance();
+			employee.id = id;
+			employee.hours = hours;
+			return employee;
+		    } catch (IllegalAccessException|InstantiationException e) {
+			e.printStackTrace();
+			return null;
+		    }
 		}
 	}	
 }

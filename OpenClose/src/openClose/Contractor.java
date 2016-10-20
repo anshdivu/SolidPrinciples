@@ -1,12 +1,11 @@
 package openClose;
 
-public class Contractor extends AbstractEmployee implements Employee {
+public class Contractor extends AbstractEmployee {
 
 	private static final int MIN_WEEKLY_PAY = 20_000;
 	private static final int HOURLY_PAY = 1_200;
 
-	public Contractor(int id, float hours) {
-		super(id, hours);
+	Contractor() {
 	}
 
 	@Override
