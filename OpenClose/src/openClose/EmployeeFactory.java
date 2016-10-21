@@ -34,6 +34,10 @@ class EmployeeFactory {
 		return clazz.getConstructor(int.class, float.class);
 	}
 
+	/**
+	 * [Null Object Pattern]
+	 * This Class is used when {@link type} doesn't match any concrete {@link Employee} class.
+	 */
 	private class InvalidEmployee implements Employee {
 		@Override
 		public float weeklyPay() {
