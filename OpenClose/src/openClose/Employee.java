@@ -1,9 +1,9 @@
 package openClose;
 
 public interface Employee {
-
-	float weeklyPay();
-	static Employee create(int id, float hours) {
-		return null;
-	}
+	public float weeklyPay();
+	
+	public static Employee create(int id, float hours, String type) {
+		return new EmployeeFactory(type).createEmployee(id, hours);
+	}	
 }

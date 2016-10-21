@@ -1,6 +1,6 @@
 package openClose;
 
-public class AbstractEmployee {
+public abstract class AbstractEmployee implements Employee {
 	private int id;
 	private float hours;
 
