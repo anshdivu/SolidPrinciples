@@ -1,42 +1,25 @@
 package openClose;
 
-import java.lang.reflect.Constructor;
-
 class EmployeeFactory {
-	private enum EmployeeTypes {
-		SALARIED(SalariedEmployee.class),
-		INTERN(Intern.class),
-		CONTRACTOR(Contractor.class);
-
-		public Class<? extends Employee> clazz;
-
-		private EmployeeTypes(Class<? extends Employee> clazz) {
-			this.clazz = clazz;
-		}
-	}
-
 	private String type;
 
 	public EmployeeFactory(String type) {
 		this.type = type;
 	}
 
-	public Employee createEmployee(int id, float hours) {
+	public Employee create(int id, float hours) {
 		try {
-			return getConstructor(this.type).newInstance(id, hours);
-		} catch (Exception ignore) {
+			return EmployeeType.valueOf(type).create(id, hours);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException ignore) {
 			return this.new InvalidEmployee();
 		}
 	}
 
-	private Constructor<? extends Employee> getConstructor(String type) throws NoSuchMethodException {
-		Class<? extends Employee> clazz = EmployeeTypes.valueOf(type).clazz;
-		return clazz.getConstructor(int.class, float.class);
-	}
-
 	/**
+	 * This Class is used when {@link EmployeeFactory.type} doesn't match any
+	 * concrete {@link Employee} class.
+	 * 
 	 * [Null Object Pattern]
-	 * This Class is used when {@link type} doesn't match any concrete {@link Employee} class.
 	 */
 	private class InvalidEmployee implements Employee {
 		@Override

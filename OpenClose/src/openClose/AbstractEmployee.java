@@ -1,8 +1,12 @@
 package openClose;
 
 public abstract class AbstractEmployee implements Employee {
-	private int id;
-	private float hours;
+	// package Level members are only accessed by EmployeeFactory
+	int id;
+	float hours;
+
+	AbstractEmployee() {
+	}
 
 	public AbstractEmployee(int id, float hours) {
 		this.id = id;
