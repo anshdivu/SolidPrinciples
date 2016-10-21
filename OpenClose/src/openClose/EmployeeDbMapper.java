@@ -11,15 +11,15 @@ public class EmployeeDbMapper {
 		INTERN(Intern.class), 
 		CONTRACTOR(Contractor.class);
 		
-		private Class<? extends Employee> clazz;
+		private Class<? extends AbstractEmployee> clazz;
 
-		EmployeeType(Class<? extends Employee> clazz) {
+		EmployeeType(Class<? extends AbstractEmployee> clazz) {
 			this.clazz = clazz;
 		}
 
 		public Employee getEmployee(int id, float hours) {
 		    try {
-			AbstractEmployee employee = (AbstractEmployee) clazz.newInstance();
+			AbstractEmployee employee = clazz.newInstance();
 			employee.id = id;
 			employee.hours = hours;
 			return employee;
