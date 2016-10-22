@@ -1,13 +1,13 @@
-package openClose;
+package com.diviyansh.solid.openclose.step4;
 
-public abstract class AbstractEmployee implements Employee {
-	// package Level members are only accessed by EmployeeFactory
+abstract class AbstractEmployee implements Employee {
+	public enum Type {
+		CONTRACTOR, INTERN, SALARIED;
+	}
+	
 	int id;
 	float hours;
-
-	AbstractEmployee() {
-	}
-
+	
 	public AbstractEmployee(int id, float hours) {
 		this.id = id;
 		this.hours = hours;
@@ -20,5 +20,4 @@ public abstract class AbstractEmployee implements Employee {
 	public float getHours() {
 		return hours;
 	}
-
 }
