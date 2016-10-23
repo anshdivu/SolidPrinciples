@@ -3,7 +3,6 @@ package com.diviyansh.solid.openclose.step2;
 import com.diviyansh.solid.openclose.step0.Employee;
 
 public class Contractor {
-
 	private static final int HOURLY_PAY = 1_200;
 	private Employee employee;
 

@@ -13,7 +13,7 @@ public class EmployeeService {
 			} else {
 				return 40 * calculateHourlyPay(employee.getType());
 			}
-		
+
 		case CONTRACTOR:
 			float pay = employee.getHours() * calculateHourlyPay(employee.getType());
 			if (pay < 30_000) {
@@ -21,7 +21,7 @@ public class EmployeeService {
 			} else {
 				return pay;
 			}
-		
+
 		default:
 			return 0;
 		}

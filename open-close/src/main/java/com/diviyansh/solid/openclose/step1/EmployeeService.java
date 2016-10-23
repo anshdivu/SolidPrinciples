@@ -6,10 +6,14 @@ public class EmployeeService {
 
 	public float weekelyPay(Employee employee) {
 		switch (employee.getType()) {
-		case INTERN: return internWeeklyPay(employee);
-		case SALARIED: return salariedWeeklyPay(employee);		
-		case CONTRACTOR: return contractorWeeklyPay(employee);		
-		default: return 0;
+		case INTERN:
+			return internWeeklyPay(employee);
+		case SALARIED:
+			return salariedWeeklyPay(employee);
+		case CONTRACTOR:
+			return contractorWeeklyPay(employee);
+		default:
+			return 0;
 		}
 	}
 
