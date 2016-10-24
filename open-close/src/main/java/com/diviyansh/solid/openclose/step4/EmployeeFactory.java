@@ -1,26 +1,22 @@
 package com.diviyansh.solid.openclose.step4;
 
 class EmployeeFactory {
-	private enum Type {
-		CONTRACTOR, INTERN, SALARIED;
-	}
-
-	private Type type;
+	private String type;
 
 	public EmployeeFactory(String type) {
-		this.type = Type.valueOf(type);
+		this.type = type;
 	}
 
 	public Employee create(int id, float hours) {
 		switch (type) {
-		case INTERN:
+		case "INTERN":
 			return new Intern(id, hours);
-		case SALARIED:
+		case "SALARIED":
 			return new Salaried(id, hours);
-		case CONTRACTOR:
+		case "CONTRACTOR":
 			return new Contractor(id, hours);
 		default:
-			return new UnknownTypeEmployee();
+			return new UnknownTypeEmployee(type, id, hours);
 		}
 	}
 
@@ -28,10 +24,24 @@ class EmployeeFactory {
 	 * This Class is used when {@link EmployeeFactory.type} doesn't match any
 	 * concrete {@link Employee} class.
 	 */
-	private class UnknownTypeEmployee implements Employee {
+	public class UnknownTypeEmployee extends AbstractEmployee {
+		private String type;
+
+		public UnknownTypeEmployee(String type, int id, float hours) {
+			super(id, hours);
+			this.type = type;
+		}
+
 		@Override
 		public float weeklyPay() {
 			return 0;
+		}
+
+		/**
+		 * Debug Only Data
+		 */
+		public String getType() {
+			return type;
 		}
 	}
 }
