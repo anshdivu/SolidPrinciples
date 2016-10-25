@@ -1,18 +1,13 @@
 package com.diviyansh.solid.openclose.step2;
 
-import com.diviyansh.solid.openclose.step0.Employee;
-
-public class Intern {
-
+public class Intern extends Employee {
 	private static final int HOURLY_PAY = 500;
-	private Employee employee;
 
-	public Intern(Employee employee) {
-		this.employee = employee;
+	public Intern(int id, String type, float hours) {
+		super(id, type, hours);
 	}
 
 	public float weeklyPay() {
-		return employee.getHours() * HOURLY_PAY;
+		return getHours() * HOURLY_PAY;
 	}
-
 }
