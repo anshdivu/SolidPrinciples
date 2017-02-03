@@ -2,12 +2,12 @@ package com.diviyansh.solid.interfacesegregation.step1;
 
 public class PaymentProcessor {
 
-	public boolean payOut(AccountPayable payable) {
-		return processTransaction(payable.pay(), true);
+	public boolean payOut(Account account) {
+		return processTransaction(account.pay(), true);
 	}
 
-	public boolean receiveIn(AccountReceivable receivable) {
-		return processTransaction(receivable.receive(), false);
+	public boolean receiveIn(Account account) {
+		return processTransaction(account.receive(), false);
 	}
 
 	private boolean processTransaction(double amount, boolean inOut) {

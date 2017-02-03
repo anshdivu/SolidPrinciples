@@ -1,6 +1,6 @@
-package com.diviyansh.solid.interfacesegregation.step1;
+package com.diviyansh.solid.interfacesegregation.step2;
 
-public class Employee implements Account {
+public class Employee implements AccountPayable {
 	private static final int HOURLY_PAY = 1_000;
 
 	private int id;
@@ -25,10 +25,5 @@ public class Employee implements Account {
 		} else {
 			return 40 * HOURLY_PAY;
 		}
-	}
-
-	@Override
-	public double receive() {
-		throw new UnsupportedOperationException("Employee class doesn't support receive method");
 	}
 }
